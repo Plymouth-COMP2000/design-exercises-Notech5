@@ -31,6 +31,7 @@ public class MenuActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle("Menu");
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 

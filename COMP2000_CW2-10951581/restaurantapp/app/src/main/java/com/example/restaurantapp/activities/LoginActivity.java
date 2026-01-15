@@ -22,6 +22,8 @@ public class LoginActivity extends AppCompatActivity {
     private EditText UnameEditText, passwordEditText;
     private Button loginBtn;
 
+    private Button createBtn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +34,17 @@ public class LoginActivity extends AppCompatActivity {
         UnameEditText = findViewById(R.id.email);
         passwordEditText = findViewById(R.id.password);
         loginBtn = findViewById(R.id.loginBtn);
+        createBtn = findViewById(R.id.createUserBtn);
 
         //call login function when clicked
         loginBtn.setOnClickListener(v -> attemptLogin());
+        createBtn.setOnClickListener(v -> createUser());
+    }
+
+    private void createUser() {
+
+        startActivity(new Intent(this, CreateUserActivity.class));
+
     }
 
     private void attemptLogin() {
@@ -70,6 +80,8 @@ public class LoginActivity extends AppCompatActivity {
                             //save user info for session
                             UserSession.userId = usernameInput;
                             UserSession.role = user.getString("usertype");
+
+
 
                             //check role
                             if ("staff".equalsIgnoreCase(UserSession.role)) {

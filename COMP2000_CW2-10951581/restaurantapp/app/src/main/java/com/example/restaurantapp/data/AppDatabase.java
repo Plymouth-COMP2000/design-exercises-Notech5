@@ -7,6 +7,7 @@ import androidx.room.RoomDatabase;
 import com.example.restaurantapp.model.CustomerMenuItem;
 import com.example.restaurantapp.model.Reservation;
 
+
 //set up app database
 @Database(entities = {CustomerMenuItem.class, Reservation.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {

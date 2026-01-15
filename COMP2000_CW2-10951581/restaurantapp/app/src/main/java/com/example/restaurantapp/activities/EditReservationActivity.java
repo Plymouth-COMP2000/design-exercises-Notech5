@@ -12,6 +12,8 @@ import androidx.appcompat.widget.Toolbar;
 import com.example.restaurantapp.R;
 import com.example.restaurantapp.data.AppDatabase;
 import com.example.restaurantapp.model.Reservation;
+import com.example.restaurantapp.model.UserSession;
+import com.example.restaurantapp.util.NotificationStore;
 
 import java.util.Calendar;
 
@@ -28,6 +30,7 @@ public class EditReservationActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle("Edit reservation");
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
@@ -94,9 +97,21 @@ public class EditReservationActivity extends AppCompatActivity {
             reservation.guests = Integer.parseInt(guests.getText().toString());
 
             new Thread(() -> {
-                AppDatabase.getInstance(this)
-                        .reservationDao()
-                        .update(reservation);
+                AppDatabase db = AppDatabase.getInstance(this);
+
+                db.reservationDao().update(reservation);
+
+                if ("staff".equals(UserSession.role)) {
+
+                    String customerUserId = reservation.userId;
+
+                    NotificationStore.add(
+                            this,
+                            customerUserId,
+                            "Your reservation was updated by staff."
+                    );
+                }
+
 
                 //return to reservations screen
                 runOnUiThread(this::finish);

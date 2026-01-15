@@ -35,6 +35,7 @@ public class ReservationActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle("Reservations");
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
