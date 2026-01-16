@@ -59,16 +59,12 @@ public class CreateUserActivity extends AppCompatActivity {
                         BASE_URL,
                         body,
                         response -> {
-                            Toast.makeText(this,
-                                    "User created successfully",
-                                    Toast.LENGTH_LONG).show();
+                            Toast.makeText(this, "User created successfully", Toast.LENGTH_LONG).show();
                             finish();
                         },
                         error -> {
                             error.printStackTrace();
-                            Toast.makeText(this,
-                                    "Failed to create user",
-                                    Toast.LENGTH_LONG).show();
+                            Toast.makeText(this, "Failed to create user", Toast.LENGTH_LONG).show();
                         }
                 );
 
@@ -99,6 +95,5 @@ public class CreateUserActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
 
 }

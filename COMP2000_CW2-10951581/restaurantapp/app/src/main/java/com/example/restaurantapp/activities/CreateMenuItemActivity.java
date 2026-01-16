@@ -3,6 +3,8 @@ package com.example.restaurantapp.activities;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.restaurantapp.R;
@@ -32,22 +34,23 @@ public class CreateMenuItemActivity extends AppCompatActivity {
             //run in background
             new Thread(() -> {
 
-                //retrieve appdatabase instance
-                AppDatabase.getInstance(this)
-                        .menuDao()
-
-                        //insert into database
-                        .insert(item);
+                //retrieve appdatabase instance and insert into database
+                AppDatabase.getInstance(this).menuDao().insert(item);
 
                 //go back to menuactivity
-                runOnUiThread(this::finish);
+                runOnUiThread(() -> {
+
+                    Toast.makeText(this, "Menu item created successfully", Toast.LENGTH_SHORT).show();
+                    finish();
+
+                });
             }).start();
         });
     }
 
     @Override
     public boolean onSupportNavigateUp() {
-        finish();
+        onBackPressed();
         return true;
     }
 

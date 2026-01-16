@@ -5,6 +5,7 @@ import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -95,13 +96,12 @@ public class CreateReservationActivity extends AppCompatActivity {
 
         //run on separate thread to avoid crashes
         new Thread(() -> {
-            AppDatabase.getInstance(this)
-                    .reservationDao()
-                    .insert(r);
+            AppDatabase.getInstance(this).reservationDao().insert(r);
+
+            Toast.makeText(this, "Reservation created successfully", Toast.LENGTH_SHORT).show();
             runOnUiThread(this::finish);
         }).start();
     }
-
 
     @Override
     public boolean onSupportNavigateUp() {

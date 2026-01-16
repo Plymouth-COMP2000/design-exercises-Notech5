@@ -24,7 +24,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private Button createBtn;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,15 +62,14 @@ public class LoginActivity extends AppCompatActivity {
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 response -> {
                     try {
-                        //debug for development
-                        Toast.makeText(this, "Response: " + response.toString(), Toast.LENGTH_LONG).show();
+
+                        Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show();;
 
                         //invalid user
                         if (!response.has("user")) {
                             Toast.makeText(this, "User not found", Toast.LENGTH_SHORT).show();
                             return;
                         }
-
 
                         JSONObject user = response.getJSONObject("user");
                         String passwordFromApi = user.getString("password");
@@ -80,8 +78,6 @@ public class LoginActivity extends AppCompatActivity {
                             //save user info for session
                             UserSession.userId = usernameInput;
                             UserSession.role = user.getString("usertype");
-
-
 
                             //check role
                             if ("staff".equalsIgnoreCase(UserSession.role)) {

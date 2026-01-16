@@ -5,6 +5,7 @@ import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -63,8 +64,6 @@ public class EditReservationActivity extends AppCompatActivity {
             });
         }).start();
 
-        //enforce valid inputs
-
         //date
         date.setOnClickListener(v -> {
             Calendar c = Calendar.getInstance();
@@ -101,6 +100,8 @@ public class EditReservationActivity extends AppCompatActivity {
 
                 db.reservationDao().update(reservation);
 
+                Toast.makeText(this, "Reservation updated sucessfully", Toast.LENGTH_SHORT).show();
+
                 if ("staff".equals(UserSession.role)) {
 
                     String customerUserId = reservation.userId;
@@ -111,7 +112,6 @@ public class EditReservationActivity extends AppCompatActivity {
                             "Your reservation was updated by staff."
                     );
                 }
-
 
                 //return to reservations screen
                 runOnUiThread(this::finish);
