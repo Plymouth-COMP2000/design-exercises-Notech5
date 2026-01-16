@@ -98,8 +98,12 @@ public class CreateReservationActivity extends AppCompatActivity {
         new Thread(() -> {
             AppDatabase.getInstance(this).reservationDao().insert(r);
 
-            Toast.makeText(this, "Reservation created successfully", Toast.LENGTH_SHORT).show();
-            runOnUiThread(this::finish);
+            runOnUiThread(() -> {
+
+                Toast.makeText(this, "Reservation created successfully", Toast.LENGTH_SHORT).show();
+                finish();
+
+            });
         }).start();
     }
 

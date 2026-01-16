@@ -100,8 +100,6 @@ public class EditReservationActivity extends AppCompatActivity {
 
                 db.reservationDao().update(reservation);
 
-                Toast.makeText(this, "Reservation updated sucessfully", Toast.LENGTH_SHORT).show();
-
                 if ("staff".equals(UserSession.role)) {
 
                     String customerUserId = reservation.userId;
@@ -113,8 +111,13 @@ public class EditReservationActivity extends AppCompatActivity {
                     );
                 }
 
-                //return to reservations screen
-                runOnUiThread(this::finish);
+                //return to reservations
+                runOnUiThread(() -> {
+
+                    Toast.makeText(this, "Reservation edited successfully", Toast.LENGTH_SHORT).show();
+                    finish();
+
+                });
             }).start();
         });
     }
