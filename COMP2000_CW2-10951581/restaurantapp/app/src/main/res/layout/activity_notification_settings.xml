@@ -1,0 +1,33 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:titleTextColor="@android:color/white" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switchEnabled"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Enable booking notifications"/>
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switchEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Notify when booking is edited"/>
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switchCancel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Notify when booking is cancelled"/>
+</LinearLayout>
